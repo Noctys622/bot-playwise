@@ -1,3 +1,4 @@
+const handleReviewInteraction = require('../../utils/review-interactions');
 const {error}  = require("./../../utils/interaction-utils");
 const { CommandInteraction } = require('discord.js');
 const CustomClient = require("./../../structure/Client");
@@ -7,7 +8,8 @@ const CustomClient = require("./../../structure/Client");
  * @param {CustomClient} options.client - Le client 
  * @param {CommandInteraction} options.interaction - L'interaction de commande
  */
-module.exports = (client, interaction) => {
+module.exports = async (client, interaction) => {
+  if (await handleReviewInteraction(interaction)) return;
   if (interaction.isCommand()) {
     const command = client.commands[interaction.commandName];
     if (!command) return error(interaction, 'Cette commande n\'existe pas ou n\'existe plus.');
