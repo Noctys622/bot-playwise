@@ -10,3 +10,10 @@ client.loadEvents();
 client.loadCommands();
 client.loadSelectMenus();
 client.loadButtons();
+// Activité Discord du bot
+client.once('ready', () => {
+  client.user.setPresence({
+    activities: [{ name: 'At your service', type: 0 }],
+    status: 'online'
+  });
+});
